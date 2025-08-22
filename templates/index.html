@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Job Agent</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background-color: #121212;
+            color: #e0e0e0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background-color: #1e1e1e;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+            width: 100%;
+            max-width: 500px;
+            text-align: center;
+        }
+        h1 { color: #ffffff; margin-bottom: 30px; }
+        .form-group { margin-bottom: 25px; text-align: left; }
+        label { display: block; margin-bottom: 8px; font-weight: 500; color: #bbbbbb; }
+        input[type="text"], input[type="file"] {
+            width: 100%; padding: 12px; border-radius: 8px; border: 1px solid #444;
+            background-color: #333; color: #e0e0e0; box-sizing: border-box;
+        }
+        button {
+            width: 100%; padding: 15px; border: none; border-radius: 8px;
+            background-color: #007bff; color: white; font-size: 16px;
+            font-weight: bold; cursor: pointer; transition: background-color 0.2s;
+        }
+        button:hover { background-color: #0056b3; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>AI Job Agent</h1>
+        <form method="POST" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="resume">Upload Your Resume (PDF)</label>
+                <input type="file" id="resume" name="resume" accept=".pdf" required>
+            </div>
+            <div class="form-group">
+                <label for="domain">Enter Your Desired Job Domain</label>
+                <input type="text" id="domain" name="domain" placeholder="e.g., Fresher Data Analyst" required>
+            </div>
+            <button type="submit">Start Analysis</button>
+        </form>
+    </div>
+</body>
+</html>

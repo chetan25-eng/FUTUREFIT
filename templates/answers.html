@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analysis Results</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background-color: #121212;
+            color: #e0e0e0;
+            line-height: 1.6;
+            padding: 20px;
+        }
+        .container { max-width: 900px; margin: 20px auto; }
+        h1 { color: #ffffff; border-bottom: 2px solid #007bff; padding-bottom: 10px; text-align: center;}
+        .job-card {
+            background-color: #1e1e1e;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
+            margin-bottom: 30px;
+            border-left: 4px solid #007bff;
+        }
+        .job-card h2 { margin-top: 0; color: #00aaff; }
+        .job-card a {
+            display: inline-block;
+            background-color: #007bff;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background-color 0.2s;
+            margin-right: 10px;
+        }
+        .job-card a:hover { background-color: #0056b3; }
+        pre {
+            background-color: #282c34;
+            padding: 15px;
+            border-radius: 8px;
+            white-space: pre-wrap; /* Allows text to wrap */
+            word-wrap: break-word;
+            color: #abb2bf;
+            font-size: 14px;
+        }
+        .actions { margin-top: 20px; }
+        .download-btn {
+            background-color: #28a745;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background-color 0.2s;
+        }
+        .download-btn:hover { background-color: #218838; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Your Top Job Matches</h1>
+
+        {% if matched_jobs %}
+            {% for job in matched_jobs %}
+                <div class="job-card">
+                    <h2>{{ job.title }}</h2>
+                    <p><strong>Company:</strong> {{ job.company }}</p>
+                    
+                    <h4>Generated Cover Letter:</h4>
+                    <pre id="cover-letter-{{ loop.index }}">{{ job.cover_letter }}</pre>
+                    
+                    <div class="actions">
+                        <a href="{{ job.link }}" target="_blank">Apply Here</a>
+                        <button class="download-btn" onclick="downloadCoverLetter({{ loop.index }}, '{{ job.company }}')">
+                            Download Cover Letter
+                        </button>
+                    </div>
+                </div>
+            {% endfor %}
+        {% else %}
+            <div class="job-card">
+                <h2>No Suitable Matches Found</h2>
+                <p>We couldn't find any jobs with a strong skill match based on your resume. Try searching for a different domain or updating your resume.</p>
+            </div>
+        {% endif %}
+    </div>
+
+    <script>
+        function downloadCoverLetter(index, companyName) {
+            const coverLetterText = document.getElementById(`cover-letter-${index}`).innerText;
+            const blob = new Blob([coverLetterText], { type: 'text/plain' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            const safeCompanyName = companyName.replace(/[^a-z0-9]/gi, '_').toLowerCase();
+            a.href = url;
+            a.download = `Cover_Letter_${safeCompanyName}.txt`;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        }
+    </script>
+</body>
+</html>
