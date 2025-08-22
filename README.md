@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # KBN – Job Matching Web App
 
 ## Project Description
@@ -48,3 +49,6 @@ Future Improvements:
 
 Author
 chetan25-eng -https://github.com/chetan25-eng
+=======
+# FUTUREFIT
+>>>>>>> a90ac633eb3814f36e1136108298d39c183f6754
