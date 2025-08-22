@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 flask
 flask-cors
 gunicorn
@@ -6,13 +5,3 @@ pandas
 requests
 google-generativeai
 PyPDF2
-=======
-flask
-flask-cors
-gunicorn
-pandas
-requests
-google-generativeai
-PyPDF2
->>>>>>> be87d88d24cea9a6121f5bf854f6adb4f0319697
-typing-extensions
